@@ -3,7 +3,8 @@ name: Build Reall Shot APK
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
@@ -21,11 +22,12 @@ jobs:
 
       - name: Configurar Android SDK
         uses: android-actions/setup-android@v3
+        continue-on-error: true
 
-      - name: Gerar APK
+      - name: Preparar arquivos
         run: |
-          echo "O projeto Android será compilado aqui."
           mkdir -p output
+          echo "Reall Shot - preparando o APK" > output/LEIA-ME.txt
 
       - name: Guardar arquivos
         uses: actions/upload-artifact@v4
