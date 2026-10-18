@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reall Shot — Painel de ajustes</title>
+<style>
+:root{--bg:#08070b;--panel:#121016;--line:#30233f;--purple:#923cff;--purple2:#5e1dbb;--text:#f7f1ff;--muted:#b9aec7;--green:#52f477}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#211035 0,#08070b 52%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:22px clamp(16px,4vw,44px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:15px;flex-wrap:wrap}
+.logo{font-size:clamp(28px,4vw,42px);font-weight:900;font-style:italic;letter-spacing:-2px}.logo span{color:var(--purple)}.subtitle{color:var(--muted);font-size:12px;letter-spacing:1px}
+.badge{border:1px solid #285c36;background:#0c2013;color:var(--green);padding:8px 12px;border-radius:20px;font-size:12px}
+main{max-width:1180px;margin:auto;padding:22px 16px 40px}.hero{padding:30px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(110deg,#1b1028,#0e0b13 70%);margin-bottom:18px}.hero h1{font-size:clamp(27px,5vw,46px);margin:0 0 8px}.hero h1 span{color:var(--purple)}.hero p{color:var(--muted);margin:0;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(145deg,#15121a,#0e0c11);border:1px solid var(--line);border-radius:15px;padding:20px;min-width:0}.card h2{font-size:17px;margin:0 0 18px}.row{margin:17px 0}.rowhead{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.muted{color:var(--muted);font-size:13px}input[type=range]{width:100%;accent-color:var(--purple)}select{background:#1b1424;color:white;border:1px solid #654095;border-radius:8px;padding:9px;max-width:100%}.toggle{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:15px 0}.toggle input{accent-color:var(--purple);width:18px;height:18px}.btn{border:0;border-radius:9px;background:linear-gradient(100deg,#7626d7,#a24aff);color:white;font-weight:750;padding:13px 16px;cursor:pointer;width:100%;margin-top:10px}.btn.secondary{background:#21162e;border:1px solid #59387a}.btn:active{transform:scale(.99)}.notice{margin-top:16px;padding:13px 15px;border-radius:10px;background:#21172b;border:1px solid #45305a;color:#d8c7ee;font-size:13px;line-height:1.55}.status{color:var(--green);font-size:13px;min-height:20px;margin-top:10px}.footer{text-align:center;color:#82758f;font-size:12px;padding:25px 0 0}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding:22px}.card{padding:17px}}
+</style>
+</head>
+<body>
+<header><div><div class="logo">Reall <span>Shot</span> 🎯</div><div class="subtitle">PAINEL DE AJUSTES • FREE FIRE</div></div><div class="badge">● PAINEL LOCAL ATIVO</div></header>
+<main>
+<section class="hero"><h1>Desempenho melhor. <span>Seu controle.</span></h1><p>Configure suas preferências, ajuste a sensibilidade e guarde seu perfil neste dispositivo. Este protótipo não altera arquivos do Free Fire nem promete proteção contra banimentos.</p></section>
+<div class="grid">
+<section class="card"><h2>🚀 Otimização do dispositivo</h2>
+<div class="toggle"><label for="anim">Reduzir animações da interface</label><input id="anim" type="checkbox" checked></div>
+<div class="toggle"><label for="battery">Priorizar economia de bateria</label><input id="battery" type="checkbox"></div>
+<div class="toggle"><label for="focus">Ativar modo foco (lembrete)</label><input id="focus" type="checkbox" checked></div>
+<div class="row"><div class="rowhead"><label for="fps">Meta de FPS desejada</label><strong id="fpsv">60</strong></div><input id="fps" type="range" min="30" max="120" step="30" value="60"></div>
+<div class="notice">As opções acima são preferências salvas pelo painel; elas não mudam diretamente o desempenho do telefone ou do jogo.</div>
+</section>
+<section class="card"><h2>🎯 Sensibilidade personalizada</h2>
+<div id="sliders"></div>
+<div class="row"><div class="rowhead"><label for="style">Estilo de ajuste</label></div><select id="style"><option>Equilibrado</option><option>Movimentos rápidos</option><option>Controle preciso</option></select></div>
+<button class="btn" id="save">Salvar meu perfil</button><button class="btn secondary" id="reset">Restaurar padrão</button><div class="status" id="status" aria-live="polite"></div>
+</section>
+<section class="card"><h2>🧾 Perfil e configurações</h2>
+<div class="row"><div class="rowhead"><label for="profile">Nome do perfil</label></div><input id="profile" value="Meu perfil" maxlength="30" style="width:100%;padding:10px;border-radius:8px;background:#1b1424;border:1px solid #654095;color:white"></div>
+<button class="btn secondary" id="export">Exportar configurações (.json)</button><button class="btn secondary" id="import">Importar configurações (.json)</button><input type="file" id="file" accept=".json,application/json" hidden><div class="status" id="fileStatus" aria-live="polite"></div>
+</section>
+<section class="card"><h2>🛡️ Segurança e uso responsável</h2>
+<div class="toggle"><span>Usar somente ajustes permitidos pelo jogo</span><input type="checkbox" checked disabled></div>
+<div class="toggle"><span>Não modificar arquivos do jogo</span><input type="checkbox" checked disabled></div>
+<div class="toggle"><span>Não usar macros ou mira automática</span><input type="checkbox" checked disabled></div>
+<div class="notice">Nenhum painel pode garantir “zero ban”. Evite APKs modificados, injetores, scripts, macros e ferramentas que alterem o cliente do jogo. Use as opções oficiais do jogo e do seu dispositivo.</div>
+</section>
+</div>
+<div class="footer">REALL SHOT • Protótipo web • Suas configurações ficam neste navegador.</div>
+</main>
+<script>
+const defaults={"Geral":90,"Ponto vermelho":85,"Mira 2x":80,"Mira 4x":75,"Mira AWM":50,"Olhadinha":80};
+const sliders=document.getElementById('sliders');
+function makeSliders(values=defaults){sliders.innerHTML='';Object.entries(values).forEach(([name,val])=>{let id='s'+Object.keys(defaults).indexOf(name);if(id==='s-1')return;let row=document.createElement('div');row.className='row';row.innerHTML=`<div class="rowhead"><label for="${id}">${name}</label><strong id="${id}v">${val}</strong></div><input id="${id}" type="range" min="0" max="100" value="${val}">`;sliders.appendChild(row);row.querySelector('input').addEventListener('input',e=>document.getElementById(id+'v').textContent=e.target.value)})}
+makeSliders();
+document.getElementById('fps').addEventListener('input',e=>document.getElementById('fpsv').textContent=e.target.value);
+function getData(){let sensitivity={};Object.keys(defaults).forEach((name,i)=>sensitivity[name]=Number(document.getElementById('s'+i).value));return {app:'Reall Shot',profile:document.getElementById('profile').value,sensitivity,style:document.getElementById('style').value,preferences:{reduceAnimations:document.getElementById('anim').checked,batterySaver:document.getElementById('battery').checked,focusMode:document.getElementById('focus').checked,targetFPS:Number(document.getElementById('fps').value)}}}
+function applyData(d){if(d.profile)document.getElementById('profile').value=String(d.profile).slice(0,30);if(d.sensitivity)Object.keys(defaults).forEach((name,i)=>{let v=Number(d.sensitivity[name]);if(Number.isFinite(v))document.getElementById('s'+i).value=Math.max(0,Math.min(100,v));document.getElementById('s'+i+'v').textContent=document.getElementById('s'+i).value});if(d.style)document.getElementById('style').value=d.style;let p=d.preferences||{};['reduceAnimations','batterySaver','focusMode'].forEach((k,i)=>document.getElementById(['anim','battery','focus'][i]).checked=!!p[k]);if(p.targetFPS){document.getElementById('fps').value=p.targetFPS;document.getElementById('fpsv').textContent=p.targetFPS}}
+document.getElementById('save').onclick=()=>{let d=getData();localStorage.setItem('reallShotSettings',JSON.stringify(d));document.getElementById('status').textContent='✓ Perfil salvo neste navegador.'};
+document.getElementById('reset').onclick=()=>{makeSliders();document.getElementById('profile').value='Meu perfil';document.getElementById('style').value='Equilibrado';document.getElementById('anim').checked=true;document.getElementById('battery').checked=false;document.getElementById('focus').checked=true;document.getElementById('fps').value=60;document.getElementById('fpsv').textContent='60';document.getElementById('status').textContent='Padrões restaurados. Salve para guardar.'};
+document.getElementById('export').onclick=()=>{let blob=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='reall-shot-config.json';a.click();URL.revokeObjectURL(a.href)};
+document.getElementById('import').onclick=()=>document.getElementById('file').click();
+document.getElementById('file').onchange=async e=>{try{let d=JSON.parse(await e.target.files[0].text());applyData(d);document.getElementById('fileStatus').textContent='Configurações importadas. Clique em “Salvar meu perfil” para guardar.'}catch{document.getElementById('fileStatus').textContent='Não foi possível ler esse arquivo JSON.'}e.target.value=''};
+try{let d=JSON.parse(localStorage.getItem('reallShotSettings'));if(d)applyData(d)}catch{}
+</script>
+</body></html>
